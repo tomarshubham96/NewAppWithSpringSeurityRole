@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+<title>Register Form</title>
+</head>
+<body align="center">
+
+	<div layout:fragment="content" class="container mySpace">
+	<div>
+	<p class="text text-center">
+	  <strong>Registration</strong>
+	</p>
+	</div>
+	<div class="alert alert-info" th:if="${exist}">
+	<p class="text text-center">
+	  User with this Email already Exist
+	</p>
+	</div>
+		<form th:action="@{/register}" th:object="${user}" method="post">
+		
+			<div class="form-group">
+				<label for="username" class="form-control-label">Username</label> <input
+					type="text" class="form-control" th:field="*{username}" id="username" />
+				<div class="text text-danger" th:if="${#fields.hasErrors('username')}"
+					th:errors="*{username}"></div>
+			</div>
+			<br>
+			
+			<div class="form-group">
+				<label for="firstName" class="form-control-label">First Name</label> <input
+					type="text" class="form-control" th:field="*{firstName}" id="firstName" />
+				<div class="text text-danger" th:if="${#fields.hasErrors('firstName')}"
+					th:errors="*{firstName}"></div>
+			</div>
+			<br>
+			<div class="form-group">
+				<label for="lastName" class="form-control-label">Last Name</label> <input
+					type="text" class="form-control" th:field="*{lastName}" id="lastName" />
+				<div class="text text-danger" th:if="${#fields.hasErrors('lastName')}"
+					th:errors="*{lastName}"></div>
+			</div>
+			<br>
+			<div class="form-group">
+				<label for="email" class="form-control-label">Email</label> <input
+					type="text" class="form-control" th:field="*{email}" id="email" />
+				<div class="text text-danger" th:if="${#fields.hasErrors('email')}"
+					th:errors="*{email}"></div>
+			</div>
+			<br>
+			<div class="form-group">
+				<label for="password" class="form-control-label">Password</label> <input
+					type="password" class="form-control" th:field="*{password}"
+					id="password" />
+				<div class="text text-danger"
+					th:if="${#fields.hasErrors('password')}" 
+					th:errors="*{password}"></div>
+			</div>
+			<br>
+			<div class="form-group">
+				<label for="passwordConfirm" class="form-control-label">Confirm Password</label> <input
+					type="password" class="form-control" th:field="*{passwordConfirm}"
+					id="passwordConfirm" />
+				<div class="text text-danger"
+					th:if="${#fields.hasErrors('passwordConfirm')}" 
+					th:errors="*{passwordConfirm}"></div>
+			</div>
+			<br>
+			<input type="submit" value="Submit" class="btn btn-primary" />
+			<br>
+			<br>
+			 <p th:text="${displayMessage}"></p>
+		</form>
+	</div>
+</body>
+</html>
